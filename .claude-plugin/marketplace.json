@@ -1,0 +1,24 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "premium-ux",
+  "owner": {
+    "name": "premium-ux contributors"
+  },
+  "metadata": {
+    "description": "A skill for building premium-feeling apps and auditing shipped products for premium feel",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "premium-ux",
+      "source": "./",
+      "description": "Build apps that feel premium and audit shipped products for what makes them feel cheap. State coverage, coherence, failure and recovery, flow psychology, motivation design, and the dark-pattern line — with a scored audit rubric and a state-coverage scanner.",
+      "version": "1.0.0",
+      "author": { "name": "premium-ux contributors" },
+      "license": "MIT",
+      "category": "design",
+      "keywords": ["ux", "design", "premium", "audit", "design-review", "retention", "gamification"],
+      "strict": false
+    }
+  ]
+}

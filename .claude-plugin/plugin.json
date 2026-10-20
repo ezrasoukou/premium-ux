@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "premium-ux",
+  "displayName": "Premium UX",
+  "version": "1.0.0",
+  "description": "Build apps that feel premium and audit shipped products for what makes them feel cheap. Covers state coverage, cross-screen coherence, failure and recovery design, flow psychology (smart defaults, endowed progress, reciprocity, ownership, loss framing, anchoring), motivation design (completion drive, winnable competition, competence feedback) and the dark-pattern line. Includes a scored audit rubric, a report template, and a state-coverage scanner.",
+  "author": {
+    "name": "premium-ux contributors"
+  },
+  "homepage": "https://github.com/ezrasoukou/premium-ux",
+  "repository": "https://github.com/ezrasoukou/premium-ux",
+  "license": "MIT",
+  "keywords": [
+    "ux", "ui", "design", "premium", "audit", "design-review",
+    "onboarding", "empty-states", "error-states", "loading-states",
+    "retention", "gamification", "dark-patterns", "psychology", "polish"
+  ]
+}
