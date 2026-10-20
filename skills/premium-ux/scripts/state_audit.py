@@ -82,7 +82,7 @@ SWIFT = {
         r"\basync\s+func\b", r"\bAsyncStream\b", r"\bdataTask\b",
     ],
     "loading": [r"\bisLoading\b", r"\bProgressView\b", r"\.redacted\b", r"\bisFetching\b", r"\bcase\s+loading\b"],
-    "error": [r"\bcatch\b", r"\bdo\s*\{", r"\bResult<", r"\.failure\b", r"\.alert\b", r"\bError\b"],
+    "error": [r"\bcatch\b", r"\bResult<", r"\.failure\b", r"\.alert\b", r"\bError\b"],
     "empty": [r"\.isEmpty\b", r"\.count\s*==\s*0", r"\bContentUnavailableView\b", r"\bEmptyState\b"],
 }
 
@@ -94,7 +94,7 @@ KOTLIN = {
         r"\blifecycleScope\s*\.\s*launch",
     ],
     "loading": [r"\bisLoading\b", r"\bLoading\b", r"\bCircularProgressIndicator\b", r"\bShimmer\b", r"\bprogress\b"],
-    "error": [r"\btry\s*\{", r"\bcatch\s*\(", r"\bResult\s*\.\s*failure", r"\bonFailure\b", r"\bError\b", r"\brunCatching\b"],
+    "error": [r"\bcatch\s*\(", r"\bResult\s*\.\s*failure", r"\bonFailure\b", r"\bError\b", r"\brunCatching\b"],
     "empty": [r"\.isEmpty\(\)", r"\bisEmpty\b", r"\.size\s*==\s*0", r"\bEmptyState\b", r"\.none\b"],
 }
 
@@ -108,7 +108,7 @@ DART = {
         r"ConnectionState\s*\.\s*waiting", r"\bCircularProgressIndicator\b",
         r"\bisLoading\b", r"\bShimmer\b", r"\bAsyncLoading\b", r"\bLinearProgressIndicator\b",
     ],
-    "error": [r"\bhasError\b", r"\bcatch\b", r"\btry\s*\{", r"\bonError\b", r"\bAsyncError\b", r"\bErrorWidget\b"],
+    "error": [r"\bhasError\b", r"\bcatch\b", r"\}\s*on\s+\w+", r"\bonError\b", r"\bAsyncError\b", r"\bErrorWidget\b"],
     "empty": [r"\.isEmpty\b", r"\.length\s*==\s*0", r"\bEmptyState\b"],
 }
 
@@ -205,8 +205,10 @@ def scan_file(path, rel, rules, stack):
     }
 
     if fetch_hits:
+        # an empty catch is not error handling, so it can't count as one
+        state_text = SWALLOWED.sub(" ", text)
         for key in ("loading", "error", "empty"):
-            if not any(rx.search(text) for rx in rules[key + "_re"]):
+            if not any(rx.search(state_text) for rx in rules[key + "_re"]):
                 result["missing"].append(key)
 
     for m in GENERIC_ERROR_COPY.finditer(text):
